@@ -1,0 +1,17 @@
+{
+	"authors": [
+		"Nullsanya"
+	],
+	"copyright": "Copyright © 2020, Nullsanya",
+	"dependencies": {
+	},
+	"description": "A minimal D application.",
+	"license": "MIT",
+	"name": "dgui",
+	"sourceFiles-windows-x86_64": ["../rlib/target/release/rlib.dll.lib"],
+	"copyFiles-windows-x86_64": ["../rlib/target/release/rlib.dll"],
+	"preGenerateCommands" : [
+		"cd ../rlib && cargo build --release",
+		"d++ --preprocess-only --include-path=\"$PACKAGE_DIR/../rlib\" --ignore-system-paths --no-sys-headers --prebuilt-header=stdint.h=core.stdc.stdint --source-output-path=\"$PACKAGE_DIR/source\" $PACKAGE_DIR/source/rlib_binding.dpp"
+	]
+}
